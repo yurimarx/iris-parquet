@@ -1,3 +1,4 @@
+/// @GraphQLType 
 Class dc.irisparquet.SamplePerson Extends (%Persistent, %Populate)
 {
 
