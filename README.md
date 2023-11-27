@@ -1,6 +1,6 @@
- [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/jirisreport)
- [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fjirisreport&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fjirisreport)
- [![Reliability Rating](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fjirisreport&metric=reliability_rating)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Fjirisreport)
+ [![Gitter](https://img.shields.io/badge/Available%20on-Intersystems%20Open%20Exchange-00b2a9.svg)](https://openexchange.intersystems.com/package/iris-parquet)
+ [![Quality Gate Status](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fjirisreport&metric=alert_status)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Firis-parquet)
+ [![Reliability Rating](https://community.objectscriptquality.com/api/project_badges/measure?project=intersystems_iris_community%2Fjirisreport&metric=reliability_rating)](https://community.objectscriptquality.com/dashboard?id=intersystems_iris_community%2Firis-parquet)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat&logo=AdGuard)](LICENSE)
 # Iris-Parquet
@@ -9,7 +9,7 @@ This is a tool to generate parquet files from IRIS data or load parquet data on 
 ## Description
 The Iris-Parquet allows you:
 * Generate parquet files from IRIS SQL instruction
-* Load parquet files on IRIS SQL tables
+* Generate JSON from Parquet file to allow you save it on IRIS SQL tables or JSON Documents
 
 
 ## Prerequisites
@@ -48,8 +48,10 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && 
 ```
 
 ## Testing
-1. Open http://localhost:<WebServerPort>/swagger-ui/index.html
-2. Run the method /generate-persons one or more to generate sample person fake data
-3. Run the method /sql2parquet with this query on body: select * from dc_irisparquet.SamplePerson
-4. Download the parquet file on the link Download file
-5. Open the Parquet file on VSCode (install the parquet-viewer extension to see the parquet content from VSCode - https://marketplace.visualstudio.com/items?itemName=dvirtz.parquet-viewer)
+1. Open the file IRISParquet.postman_collection.json
+2. Set the variables server (iris webserver host) and port (iris webserver port) on Variables tab of the collection
+3. Run the method /generate-persons one or more to generate sample person fake data
+4. Run the method /sql2parquet with this query on body: select * from dc_irisparquet.SamplePerson
+5. Download the parquet file on the link Download file
+6. Run the method /parquet2json to the parquet file generated on the past step and the results
+7. You can also open the Parquet file on VSCode (install the parquet-viewer extension to see the parquet content from VSCode - https://marketplace.visualstudio.com/items?itemName=dvirtz.parquet-viewer)
