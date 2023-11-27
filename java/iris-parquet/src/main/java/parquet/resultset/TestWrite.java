@@ -16,7 +16,7 @@ import org.apache.commons.io.IOUtils;
 
 import parquet.resultset.impl.ResultSetParquetTransformer;
 
-public class Test {
+public class TestWrite {
 	
 	protected static final String SCHEMA_NAME = "SchemaName";
     protected static final String NAMESPACE = "org.NAMESPACE";

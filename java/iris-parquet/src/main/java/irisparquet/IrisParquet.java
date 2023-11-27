@@ -15,6 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import parquet.resultset.IrisParquetService;
 import parquet.resultset.ResultSetTransformer;
 import parquet.resultset.TransformerListener;
 import parquet.resultset.impl.ResultSetParquetTransformer;
@@ -76,5 +77,10 @@ public class IrisParquet {
         }
 		        
         return result;
+	}
+	
+	public Boolean parquetToJSON(String parquetFilePath, String jsonFilePath) {
+		Logger.getRootLogger().setLevel(Level.OFF); 
+		return new IrisParquetService().parquetToJSON(parquetFilePath, jsonFilePath);
 	}
 }
