@@ -27,4 +27,17 @@ ClassMethod SQLToParquet(ParquetSchemaName As %String, ParquetNamespace As %Stri
     return result
 }
 
+ClassMethod ParquetToJSON(ParquetFilePath As %String, JSONFilePath As %String) As %Status
+{
+    set javaGate = $system.external.getJavaGateway()   
+    do javaGate.addToPath($SYSTEM.Util.BinaryDirectory()_"iris-parquet.jar")
+    set irisparquet = javaGate.new("irisparquet.IrisParquet") 
+   
+    set result = irisparquet.parquetToJSON(
+        ParquetFilePath, 
+        JSONFilePath)
+    
+    return result
+}
+
 }

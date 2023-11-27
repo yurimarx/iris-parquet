@@ -16,7 +16,43 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 <Route Url="/generate-persons" Method="GET" Call="GeneratePersons" Cors="true"/>
 <!-- Provide a SQL query instruction on body and get the results on a parquet file  -->
 <Route Url="/sql2parquet" Method="POST" Call="SqlToParquet" Cors="true"/>
+<!-- Provide a Parquet file get the json file  -->
+<Route Url="/parquet2json" Method="POST" Call="ParquetToJSON" Cors="true"/>
+
 </Routes>
+}
+
+ClassMethod ParquetToJSON() As %Status
+{
+  try {
+        Set source = %request.GetMimeData("file")
+        Set destination=##class(%Stream.FileBinary).%New()
+        Set destination.Filename="/tmp/"_source.FileName
+        Set tSC=destination.CopyFrom(source) //reader open the file
+        Set result=destination.%Save()
+
+        Set result = ##class(dc.irisparquet.IrisParquet).ParquetToJSON(
+        "/tmp/"_source.FileName,
+        "/tmp/content.json"
+        )
+
+        Set %response.ContentType = "application/json"
+        Set %response.NoCharSetConvert=1
+        Set %response.Headers("Access-Control-Allow-Origin")="*"
+        
+        Set stream=##class(%Stream.FileBinary).%New()
+        Set tSC=stream.LinkToFile("/tmp/content.json")
+        Do stream.OutputToDevice() 
+ 
+        Set tSC=$$$OK
+   
+    //returns error message to the user
+    } catch e {
+        Set tSC=e.AsStatus()
+        Set pOutput = tSC
+    }
+ 
+    Quit tSC
 }
 
 ClassMethod SqlToParquet() As %Status
