@@ -48,7 +48,7 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && 
 ```
 
 ## Testing
-1. Open the file IRISParquet.postman_collection.json
+1. Open the file IRISParquet.postman_collection.json (or download from [blob:https://github.com/6e245384-0e05-41a8-9642-de567709d320](https://github.com/yurimarx/iris-parquet/raw/main/IRISParquet.postman_collection.json))
 2. Set the variables server (iris webserver host) and port (iris webserver port) on Variables tab of the collection
 3. Run the method /generate-persons one or more to generate sample person fake data
 4. Run the method /sql2parquet with this query on body: select * from dc_irisparquet.SamplePerson
