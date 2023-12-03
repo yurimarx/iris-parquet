@@ -47,7 +47,14 @@ wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && 
     echo "export HADOOP_HOME=/<unzipped folder>/hadoop-3.3.6"
 ```
 
-## Testing
+## Testing using Swagger-ui
+1. Go to http://<host>:<port>/swagger-ui/index.html
+2. On field Explore insert http://<host>:<port>/parquet-api/_spec
+3. For online sample it is:
+    - http://173.212.233.87:32769/swagger-ui/index.html
+    - http://173.212.233.87:32769/parquet-api/_spec
+
+## Testing using Postman
 1. Open the file IRISParquet.postman_collection.json (or download from [iris parquet postman](https://github.com/yurimarx/iris-parquet/raw/main/IRISParquet.postman_collection.json)) 
 2. Set the variables server (iris webserver host) and port (iris webserver port) on Variables tab of the collection
 3. Run the method /generate-persons one or more to generate sample person fake data
